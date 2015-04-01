@@ -1,5 +1,7 @@
 # file-uploader-azure-blob-nodejs-express
-File Uploader using nodejs, express and azure, blob for hosting
+File Uploader site. Make on nodejs,express.
+Using azure web sites for hosting and azure blob as storage.
+
 
 Maybe still working project
 [Visit Example!](http://shenazure.azurewebsites.net/)
