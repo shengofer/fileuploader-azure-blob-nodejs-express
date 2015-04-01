@@ -1,47 +1,34 @@
 // server.js
-// load the things we need
 var express = require('express'),
      multipart = require('connect-multiparty'),
     azure = require('azure-storage'),
     fs = require('fs');
 var multipartMiddleware = multipart();
 var app = express();
+//config
+var config = require('./config.json');
 
-var STORAGE_KEY = "6pqmHc7FXko4wxRztssS9AAfMShKUxZ+mMgzx2vA6IK3BitQ3XlM0tK/RTvYsMDB8PZKO/BdIqeSiFa3UHZ4/Q==";
-var STORAGE_ACCOUNT = "shenazure";
+var STORAGE_KEY = config.STORAGE_KEY;
+var STORAGE_ACCOUNT = config.STORAGE_ACCOUNT;
 var blobSvc = azure.createBlobService(STORAGE_ACCOUNT, STORAGE_KEY);
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
-// use res.render to load up an ejs view file
 
 
 // index page 
 app.get('/', function(req, res) {
-    var drinks = [
-        { name: 'Bloody Mary', drunkness: 3 },
-        { name: 'Martini', drunkness: 5 },
-        { name: 'Scotch', drunkness: 10 }
-    ];
-    var tagline = "Any code of your own that you haven't looked at for six or more months might as well have been written by someone else.";
-
-    res.render('pages/index', {
-        drinks: drinks,
-        tagline: tagline
-    });
+    res.render('pages/index');
 });
 
 // for upload
 app.post('/file-upload',multipartMiddleware, function(req, resp) {
     var file = req.files.uploadFile;
-/*    var files = req.files;
-    var path =req.files*/
+
     uplFile(file,"something");
     console.log(req.body, req.files);
     resp.redirect('/');
-/*    var file = req.files.file1;
-    console.log(file.body);
-    console.log(file.files);*/
+
 });
 
 // about page 
@@ -90,7 +77,6 @@ function uplFile(file,containerName){
 
         blobSvc.createBlockBlobFromLocalFile(containerName, name, path, function(error, result, response){
             if(!error){
-
             }
             else {
                 console.log(error);
