@@ -25,6 +25,9 @@
 
             <div class="well">
                 <h3>Look I'm A Sidebar!</h3>
+                <% list.forEach(function(item) { %>
+                <li><%= item.name %>
+                <% }); %>
             </div>
 
         </div>

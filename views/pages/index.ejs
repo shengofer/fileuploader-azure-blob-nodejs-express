@@ -13,17 +13,25 @@
 
 <main>
     <div class="jumbotron">
-        <h1>This is great</h1>
-        <p>Welcome to templating using EJS</p>
+        <h1>Example of node js on Azure</h1>
+        <p>Hello, Andriy Mykolayovich</p>
     </div>
-    <h2>Variable</h2>
+<!--    <h2>Variable</h2>
     <p><%=tagline%></p>
     <h2>Loop</h2>
     <ul>
         <% drinks.forEach(function(drink) { %>
         <li><%= drink.name %> - <%= drink.drunkness %></li>
         <% }); %>
-    </ul>
+    </ul>-->
+    <!--upload-->
+    <div>
+        <form action="/file-upload" enctype="multipart/form-data" method="post">
+            <input type="text" name="title"><br>
+            <input type="file" name="uploadFile" multiple="multiple"><br>
+            <input type="submit" value="Upload">
+            </form>
+    </div>
 </main>
 
 <footer>
